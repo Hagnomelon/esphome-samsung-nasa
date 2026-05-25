@@ -32,7 +32,7 @@ class NASA_Client : public PollingComponent, public uart::UARTDevice {
   using RegisterAddressFunc = std::function<void(std::string)>;
   using RegisterReceiveFunc = std::function<bool(std::string, MessageSet &)>;
 
-  NASA_Client() = default;
+  NASA_Client(uint32_t update_interval) : PollingComponent(update_interval) {};
   float get_setup_priority() const override { return setup_priority::DATA; };
   void setup() override;
   void update() override;
