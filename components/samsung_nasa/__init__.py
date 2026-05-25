@@ -94,7 +94,7 @@ client_schema = cv.Schema(
         cv.Optional(NASA_MIN_RETRIES, default= 1): cv.int_range(1, 10),
         cv.Optional(NASA_SEND_TIMEOUT, default=4000): cv.int_range(1000, 10000)                    
     }
-)
+).extend(cv.polling_component_schema("10s"))
 
 CONFIG_SCHEMA = cv.Schema(
         {
@@ -182,7 +182,10 @@ async def request_write_to_code(config, action_id, template_arg, args):
 
 async def to_code(config):
     conf_client = config[NASA_CLIENT]
-    client_var = cg.new_Pvariable(conf_client[NASA_CLIENT_ID])
+    # Extract the client's specific interval from its nested schema map
+    client_interval = conf_client["update_interval"]
+    # Pass the interval into the updated C++ class constructor
+    client_var = cg.new_Pvariable(conf_client[NASA_CLIENT_ID], client_interval)
     if (conf_pin:= conf_client.get(CONF_FLOW_CONTROL_PIN)) is not None:
         pin = await gpio_pin_expression(conf_pin)
         cg.add(client_var.set_flow_control_pin(pin))

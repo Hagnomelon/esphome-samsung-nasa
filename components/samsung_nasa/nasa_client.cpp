@@ -39,10 +39,11 @@ void NASA_Client::loop() {
   this->dispatcher_.update();
   if (data_processing_init)
     return;
-  if (!read_data())
-    return;
-  if (write_data())
-    return;
+  // Modernized Loop Execution Path (ESPHome 2026.5+)
+  // Run both routines unconditionally every cycle. This prevents read loops 
+  // from starving write execution or stalling the PollingComponent timer.
+  this->read_data();
+  this->write_data();
 }
 
 uint16_t NASA_Client::skip_data(int from) {
