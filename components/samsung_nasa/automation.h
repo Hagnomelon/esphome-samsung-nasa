@@ -3,9 +3,9 @@
 #include "esphome/core/automation.h"
 #include "esphome/core/log.h"
 #include "nasa_base.h"
-#include #include "switch/nasa_switch.h"
-#include #include "select/nasa_select.h"
-#include #include "number/nasa_number.h"
+#include "switch/nasa_switch.h"
+#include "select/nasa_select.h"
+#include "number/nasa_number.h"
 #include "nasa_controller.h"
 #include <vector>
 #include <functional>
