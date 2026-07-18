@@ -4,7 +4,7 @@
 #include "esphome/core/log.h"
 #include "nasa_base.h"
 #include "switch/nasa_switch.h"
-#include "select/nasa_select.h"
+#include "samsung_nasa/select/nasa_select.h"
 #include "number/nasa_number.h"
 #include "nasa_controller.h"
 #include <vector>
