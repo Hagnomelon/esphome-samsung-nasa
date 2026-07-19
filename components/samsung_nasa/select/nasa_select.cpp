@@ -1,4 +1,4 @@
-#include "select/nasa_select.h"
+#include "nasa_select.h"
 
 namespace esphome {
 namespace samsung_nasa {
