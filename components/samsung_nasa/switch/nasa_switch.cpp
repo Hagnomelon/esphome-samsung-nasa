@@ -1,4 +1,4 @@
-#include "switch/nasa_switch.h"
+#include "nasa_switch.h"
 
 namespace esphome {
 namespace samsung_nasa {
